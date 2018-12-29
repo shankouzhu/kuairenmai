@@ -7,6 +7,11 @@
     <link rel="stylesheet" href="/static/css/bootstrap.css">
     <link rel="stylesheet" href="/static/css/main.css">
     <link rel="stylesheet" href="/static/css/main/main.css">
+    <style>
+        body{
+            min-width: 1280px;
+        }
+    </style>
 
     <link rel="stylesheet" href="/static/css/y.css">
     <link rel="icon" type="image/x-icon" href="#">
@@ -24,10 +29,10 @@
         </div>
         <ul class="list-inline c-top-bar__nav-list">
             <li class="list-inline-item c-top-bar__nav-item">
-                <a class="c-top-bar__nav-link" href="/login/">登录</a>
+                <a class="c-top-bar__nav-link" href="/user/login/">登录</a>
             </li>
             <li class="list-inline-item c-top-bar__nav-item">
-                <a class="c-top-bar__nav-link" href="http://www.mybdhome.com/register.html">注册</a>
+                <a class="c-top-bar__nav-link" href="/user/register/">注册</a>
             </li>
 
         </ul>
@@ -37,15 +42,13 @@
 </div>
 <header class="c-page-header">
     <nav class="c-page-header__nav">
-        <a class="c-page-header__logo" href="http://www.mybdhome.com/"><img class="c-page-header__logo-img" src="#"
-                                                                            alt="企业Logo"></a>
-        <form class="c-page-header__search-form" action="http://www.mybdhome.com/" method="get">
+        <a class="c-page-header__logo" href="/user/index/">
+            <img class="c-page-header__logo-img" src="#" alt="企业Logo">
+        </a>
+        <form class="c-page-header__search-form" action="/user/login_handler/" method="get">
             <input type="hidden" name="w" value="search"/>
             <input class="c-page-header__search-field" placeholder="请输入您想搜索的内容" name="so" value="">
-            <button class="c-page-header__search-submit"
-                    style="
-    color: #ffffff;
-"></button>
+            <button class="c-page-header__search-submit" style="color: #ffffff;"></button>
         </form>
         <a class="c-page-header__new-post" href="#">免费发布合作</a>
     </nav>
@@ -119,6 +122,8 @@
 					}
 
 					$("#p11").hide();
+
+
 
             </script>
 
