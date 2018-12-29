@@ -1,0 +1,356 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+
+	<head>
+		<meta charset="UTF-8">
+		<meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+		<link rel="stylesheet" href="../css/bootstrap.css">
+		<link rel="stylesheet" href="../css/main.css">
+
+
+				<link rel="stylesheet" href="../css/main/main.css">
+
+				<link rel="stylesheet" href="../css/y.css">
+		  <link rel="icon" type="image/x-icon" href="favicon.ico">
+		<title>BD之家</title>
+
+<meta name="keywords" content="默认关键词" />
+<meta name="description" content="默认描述" />
+
+	</head>
+
+	<body>
+		<div class="c-top-bar">
+			<div class="c-top-bar__nav">
+
+<div style="float:left;color: #fff;font-size: 14px;margin-top: 6px;">找合作,上BD之家
+</div>
+
+				<ul class="list-inline c-top-bar__nav-list">
+
+															<li class="list-inline-item c-top-bar__nav-item">
+						<a class="c-top-bar__nav-link" href="#">登录</a>
+					</li>
+					<li class="list-inline-item c-top-bar__nav-item">
+						<a class="c-top-bar__nav-link" href="#">注册</a>
+					</li>
+
+
+
+				</ul>
+
+
+			</div>
+		</div>
+		<header class="c-page-header">
+			<nav class="c-page-header__nav">
+				<a class="c-page-header__logo" href="http://www.mybdhome.com/"><img class="c-page-header__logo-img" src="img/logo.png" alt="企业Logo"></a>
+				<form class="c-page-header__search-form" action="http://www.mybdhome.com/" method="get">
+					<input type="hidden" name="w" value="search" />
+					<input class="c-page-header__search-field" placeholder="请输入您想搜索的内容" name="so" value=""><button class="c-page-header__search-submit" style="
+    color: #ffffff;
+"> </button></form>
+				<a class="c-page-header__new-post" href="release.html">免费发布合作</a>
+			</nav>
+		</header>
+
+		  <script type="text/javascript" src="../js/jquery.min.js" ></script>
+  	<script src="layui/layui.js?t=1508154136727" charset="utf-8"></script>
+
+
+
+		<main class="page-main page-main--auth">
+			<div class="c-auth">
+				<div class="c-auth__header">
+					<h2 class="c-auth__title">注册BD之家</h2></div>
+				<div class="c-auth__content">
+					<form class="c-auth__form"  method="post" action="#">
+						<div class="c-auth__form-group c-auth__form-group--phone"><input class="c-auth__input c-auth__phone" name="zphone" id="zphone" placeholder="手机号码" required></div>
+
+
+
+						<div class="c-auth__form-group c-auth__form-group--checksum"><input class="c-auth__input c-auth__checksum" name="zcode" id="zcode"  placeholder="校验码" required><img class="c-auth__img-checksum" src="class/code.php" onclick="changing();"  id="checkpic"></div>
+
+
+
+						<div class="c-auth__form-group c-auth__form-group--identification"><input name="zcode1" id="zcode1"   class="c-auth__input c-auth__identification" placeholder="短信验证码" required>
+
+
+							<button class="c-btn c-btn-text c-auth__fetch-identification" type="button" id="zzc1" onclick="codes()">获取验证码</button>
+
+				<span id="zzc2" class="c-btn c-btn-text c-auth__fetch-identification" style="display: none;width: 74px;">60</span>
+
+						</div>
+
+
+						<div class="c-auth__form-group c-auth__form-group--password"><input type="password" class="c-auth__input c-auth__password" name="zpass" id="zpass" placeholder="设置密码" required></div>
+						<div class="c-auth__form-group c-auth__form-group--password-confirm"><input type="password" class="c-auth__input c-auth__password-confirm" name="zpass2" id="zpass2" placeholder="确认密码" required></div>
+						<div class="c-auth__form-group c-auth__form-group--action"><button class="btn c-auth__submit">注册</button></div>
+					</form>
+					<div class="c-auth__more"><span class="c-auth__agreement"><span class="c-auth__agreement-label">注册代表您已同意</span>
+						<a class="c-auth__agreement-link" href="#">《网站用户协议》</a>
+						</span><span class="c-auth__login"><span class="c-auth__login-tip">已有账号</span>
+						<a class="c-auth__login-link" href="login.html">直接登录</a>
+						</span>
+					</div>
+				</div>
+			</div>
+		</main>
+
+
+<script>
+		function changing(){
+    document.getElementById('checkpic').src="class/code.php?"+Math.random();
+
+}
+
+
+function showTime1()
+{
+var shu = $('#zzc2').text();
+
+
+
+shu = shu - 1;
+
+if(shu > 0){
+
+	$('#zzc2').text(shu);
+	  setTimeout("showTime1()", 1000);
+
+
+}else{
+
+
+	 $('#zzc1').show();
+	 $('#zzc2').hide();
+
+}
+
+
+
+
+}
+</script>
+
+
+
+
+
+
+<script>
+
+	function codes(){
+
+
+
+
+
+	var zphone = $('#zphone').val();
+
+          			if(zphone == ""){
+
+	//一般直接写在一个js文件中
+layui.use(['layer', 'form'], function(){
+  //信息框-例4
+layer.msg('请填写手机号！', {icon: 2});
+
+});
+return false;
+
+}
+
+
+
+
+
+	var zcode = $('#zcode').val();
+
+          			if(zcode == ""){
+
+
+          					//一般直接写在一个js文件中
+layui.use(['layer', 'form'], function(){
+  //信息框-例4
+layer.msg('请填写验证码！', {icon: 2});
+
+});
+
+return false;
+
+          			}
+
+
+
+
+
+
+
+
+
+          				 var htmlobj=$.ajax({url:"class/zcode.php",async:false});
+	                var zcode1 = 　htmlobj.responseText;
+
+          			var abc2 = zcode1 - zcode;
+
+
+          				if(abc2 != 0){
+
+          				          					//一般直接写在一个js文件中
+layui.use(['layer', 'form'], function(){
+  //信息框-例4
+layer.msg('验证码错误！', {icon: 2});
+
+});
+          		return false;
+          				}
+
+
+
+
+
+
+
+var zcode = $('#zcode').val();
+
+
+      $.get("class/phone.php?phone=" + zphone + "&co=" + zcode, function(result){
+
+      if(result == 14){
+
+
+          					layui.use(['layer', 'form'], function(){
+  //信息框-例4
+layer.msg('当前手机号码已经注册，请直接登陆！', {icon: 2});
+
+});
+          					return false;
+
+          			}
+
+
+
+              if(result == 24){
+
+
+          					layui.use(['layer', 'form'], function(){
+  //信息框-例4
+layer.msg('参数错误，请填写正确的验证码！', {icon: 2});
+
+});
+          					return false;
+
+          			}
+
+
+
+
+
+
+          			      if(result == 12){
+
+
+          					layui.use(['layer', 'form'], function(){
+  //信息框-例4
+layer.msg('今日发送已达上限！', {icon: 2});
+
+});
+          					return false;
+
+          			}
+
+
+
+
+        if(result == 10){
+
+      	$('#zzc2').text("60");
+
+      	   	showTime1();
+
+
+     $('#zzc2').show();
+	 $('#zzc1').hide();
+
+
+	  }
+
+
+
+
+	})
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+	}
+</script>
+
+
+
+
+
+
+
+
+		<footer class="c-page-footer">
+			<nav class="c-page-footer__row c-page-footer__about">
+				<a class="c-page-footer__text c-page-footer__link" href="http://www.mybdhome.com/">首页&nbsp;&#47;</a>
+				<a class="c-page-footer__text c-page-footer__link" href="http://www.mybdhome.com/disclaimer.html">&nbsp;免责声明&nbsp;&#47;</a>
+				<a class="c-page-footer__text c-page-footer__link" href="http://www.mybdhome.com/about.html">&nbsp;关于我们</a>
+			</nav>
+			<p class="c-page-footer__row c-pagte-footer__contact"><span class="c-page-footer__contact-title c-page-footer__text">联系我们&nbsp;&#124;</span><span class="c-page-footer__text">&nbsp;客服QQ:&nbsp;623690500&nbsp;&#47;</span>
+                <!--<span class="c-page-footer__text">&nbsp;联系电话:&nbsp;027-87780143 （广告推销勿扰）&nbsp;&#47;</span>-->
+                <span class="c-page-footer__text">&nbsp;地址:&nbsp;武汉市洪山区书城路17号&nbsp;</span></p>
+
+
+
+          <hr class="c-page-footer__separator">
+			<p class="c-page-footer__row c-page-footer__certification"><span class="c-page-footer__text">武汉优上科技有限公司&nbsp;&#124;</span><span class="c-page-footer__text">&nbsp;鄂ICP备17005716号-2</span></p>
+		</footer>
+		<script src="../js/jquery.js"></script>
+		<script src="../js/popper.js"></script>
+		<script src="../js/bootstrap.js"></script>
+
+
+<span style="display: none;">
+<!-- 统计代码 -->
+<script src="https://s13.cnzz.com/z_stat.php?id=1269900004&web_id=1269900004" language="JavaScript"></script>
+
+
+  <script>
+var _hmt = _hmt || [];
+(function() {
+  var hm = document.createElement("script");
+  hm.src = "https://hm.baidu.com/hm.js?42bf2023872596714259937eaebb4ab5";
+  var s = document.getElementsByTagName("script")[0];
+  s.parentNode.insertBefore(hm, s);
+})();
+</script>
+
+
+</span>
+
+
+	</body>
+
+</html>
