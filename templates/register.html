@@ -4,13 +4,13 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
-    <link rel="stylesheet" href="../static/css/bootstrap.css">
-    <link rel="stylesheet" href="../static/css/main.css">
+    <link rel="stylesheet" href="/static/css/bootstrap.css">
+    <link rel="stylesheet" href="/static/css/main.css">
 
 
-    <link rel="stylesheet" href="../static/css/main/main.css">
+    <link rel="stylesheet" href="/static/css/main/main.css">
 
-    <link rel="stylesheet" href="../static/css/y.css">
+    <link rel="stylesheet" href="/static/css/y.css">
     <link rel="icon" type="image/x-icon" href="favicon.ico">
     <title>BD之家</title>
 
@@ -56,31 +56,26 @@
     </nav>
 </header>
 
-<script type="text/javascript" src="../static/js/jquery.js"></script>
-<script src="layui/layui.js?t=1508154136727" charset="utf-8"></script>
+<script type="text/javascript" src="/static/js/jquery.js"></script>
+<script src="/static/js/layui.js?t=1508154136727" charset="utf-8"></script>
 
 
 <main class="page-main page-main--auth">
     <div class="c-auth">
         <div class="c-auth__header">
-            <h2 class="c-auth__title">注册BD之家</h2></div>
+            <h2 class="c-auth__title">注册人脉网</h2></div>
         <div class="c-auth__content">
             <form class="c-auth__form" method="post" action="#">
-                <div class="c-auth__form-group c-auth__form-group--phone"><input class="c-auth__input c-auth__phone"
-                                                                                 name="zphone" id="zphone"
-                                                                                 placeholder="手机号码" required></div>
+                <div class="c-auth__form-group c-auth__form-group--phone">
+                    <input class="c-auth__input c-auth__phone" name="zphone" id="zphone" placeholder="手机号码" required></div>
+                <!--
+                <div class="c-auth__form-group c-auth__form-group--checksum">
+                    <input class="c-auth__input c-auth__checksum" name="zcode" id="zcode" placeholder="校验码" required>
+                    <img class="c-auth__img-checksum" src="/static/js/code.php" onclick="changing();" id="checkpic"></div>
+                    -->
 
-
-                <div class="c-auth__form-group c-auth__form-group--checksum"><input
-                        class="c-auth__input c-auth__checksum" name="zcode" id="zcode" placeholder="校验码" required><img
-                        class="c-auth__img-checksum" src="class/code.php" onclick="changing();" id="checkpic"></div>
-
-
-                <div class="c-auth__form-group c-auth__form-group--identification"><input name="zcode1" id="zcode1"
-                                                                                          class="c-auth__input c-auth__identification"
-                                                                                          placeholder="短信验证码" required>
-
-
+                <div class="c-auth__form-group c-auth__form-group--identification">
+                    <input name="zcode1" id="zcode1" class="c-auth__input c-auth__identification" placeholder="短信验证码" required>
                     <button class="c-btn c-btn-text c-auth__fetch-identification" type="button" id="zzc1"
                             onclick="codes()">获取验证码
                     </button>
@@ -151,8 +146,6 @@
 <script>
 
     function codes() {
-
-dfdf
         var zphone = $('#zphone').val();
 
         if (zphone == "") {
@@ -164,7 +157,6 @@ dfdf
 
             });
             return false;
-
         }
 
 
@@ -286,9 +278,9 @@ dfdf
             class="c-page-footer__text">武汉优上科技有限公司&nbsp;&#124;</span><span class="c-page-footer__text">&nbsp;鄂ICP备17005716号-2</span>
     </p>
 </footer>
-<script src="../static/js/jquery.js"></script>
-<script src="../static/js/popper.js"></script>
-<script src="../static/js/bootstrap.js"></script>
+<script src="/static/js/jquery.js"></script>
+<script src="/static/js/popper.js"></script>
+<script src="/static/js/bootstrap.js"></script>
 
 
 <span style="display: none;">
