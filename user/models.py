@@ -12,7 +12,7 @@ class Userinfo(models.Model):
     wechar = models.CharField(max_length=20, null=True)  # 威信
     QQ = models.CharField(max_length=20, null=True)  # qq
     bankcard = models.CharField(max_length=20, null=True)  # 银行卡
-    headimg = models.ImageField(upload_to='media/', null=True)  # 头像
+    headimg = models.ImageField(upload_to='user/', null=True)  # 头像
     requirement_count = models.IntegerField(default=0)  # 需求总数
     createtime = models.DateTimeField(auto_now=True)  # 创建时间
 

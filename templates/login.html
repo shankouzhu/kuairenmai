@@ -9,7 +9,7 @@
     <link rel="stylesheet" href="/static/css/main/main.css">
 
     <style>
-        body{
+        body {
             min-width: 1280px;
         }
     </style>
@@ -46,7 +46,7 @@
         <a class="c-page-header__logo" href="/user/index/">
             <img class="c-page-header__logo-img" src="/static/images/kuairenmai.png" alt="企业Logo">
         </a>
-        <form class="c-page-header__search-form" action="/user/login_handler/" method="get">
+        <form class="c-page-header__search-form" action="/user/search/" method="get">
             <input type="hidden" name="w" value="search"/>
             <input class="c-page-header__search-field" placeholder="请输入您想搜索的内容" name="so" value="">
             <button class="c-page-header__search-submit" style="color: #ffffff;"></button>
@@ -61,14 +61,15 @@
             <h2 class="c-auth__title">登录快人脉</h2>
         </div>
         <div class="c-auth__content">
-            <form class="c-auth__form" method="post">
-                <div class="c-auth__form-group c-auth__form-group--phone"><input class="c-auth__input" placeholder="手机号"
-                                                                                 name="phone"
-                                                                                 id="zphone" type="text" required></div>
-                <div class="c-auth__form-group c-auth__form-group--password"><input class="c-auth__input"
-                                                                                    placeholder="密码" name="pass"
-                                                                                    id="zpass" type="password"
-                                                                                    onkeydown=KeyDown() required></div>
+            <form class="c-auth__form" id="login_from" action="/user/login_handler/" method="post">
+                {% csrf_token %}
+                <div class="c-auth__form-group c-auth__form-group--phone">
+                    <input class="c-auth__input" placeholder="手机号" name="phone" id="zphone" type="text" required>
+                </div>
+                <div class="c-auth__form-group c-auth__form-group--password">
+                    <input class="c-auth__input" placeholder="密码" name="pass" id="zpass" type="password"
+                           onkeydown="KeyDown()" required>
+                </div>
                 <div class="c-auth__form-group c-auth__form-group--action"
                      style="text-align: center;color: red;display: none;" id="p1">
 						<span id="ts">
@@ -83,46 +84,28 @@
             </form>
 
             <script>
-					function KeyDown() {
-						if (event.keyCode == 13) {
-							logw();
-						}
-					}
-					function logw() {
-						if ($("#zphone").val() == '') {
-							$("#p1").show();
-							$("#ts").text("请填写手机号!");
-						} else {
-							if ($("#zpass").val() == '') {
-								$("#p1").show();
-								$("#ts").text("请填写密码!");
-							} else {
-								$("#ts").text("登录中!");
-								var zzphone = $("#zphone").val();
-								var zzpass = $("#zpass").val();
-								$.ajax({
-                                    type:"POST",
-                                    url:"",
-                                    data:{},
-                                    dataType:'json',
-                                    success:function (result) {
+                function KeyDown() {
+                    if (event.keyCode == 13) {
+                        logw();
+                    }
+                }
 
-                                    },
-                                    error:function (result) {
+                function logw() {
+                    if ($("#zphone").val() == '') {
+                        $("#p1").show();
+                        $("#ts").text("请填写手机号!");
+                    } else {
+                        if ($("#zpass").val() == '') {
+                            $("#p1").show();
+                            $("#ts").text("请填写密码!");
+                        } else {
+                            $("#ts").text("登录中!");
+                            $("#login_from").submit()
+                        }
+                    }
+                }
 
-                                    }
-                                })
-
-							}
-
-						}
-
-					}
-
-					$("#p11").hide();
-
-
-
+                $("#p11").hide();
             </script>
 
             <div class="c-auth__more">
@@ -162,12 +145,12 @@
 		<script src="https://s13.cnzz.com/z_stat.php?id=1269900004&web_id=1269900004" language="JavaScript"></script>
 		<script>
 			var _hmt = _hmt || [];
-			(function () {
-				var hm = document.createElement("script");
-				hm.src = "https://hm.baidu.com/hm.js?42bf2023872596714259937eaebb4ab5";
-				var s = document.getElementsByTagName("script")[0];
-				s.parentNode.insertBefore(hm, s);
-			})();
+            (function () {
+                var hm = document.createElement("script");
+                hm.src = "https://hm.baidu.com/hm.js?42bf2023872596714259937eaebb4ab5";
+                var s = document.getElementsByTagName("script")[0];
+                s.parentNode.insertBefore(hm, s);
+            })();
 		</script>
 	</span>
 
