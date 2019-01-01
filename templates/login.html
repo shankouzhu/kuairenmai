@@ -7,6 +7,7 @@
     <link rel="stylesheet" href="/static/css/bootstrap.css">
     <link rel="stylesheet" href="/static/css/main.css">
     <link rel="stylesheet" href="/static/css/main/main.css">
+
     <style>
         body{
             min-width: 1280px;
@@ -43,7 +44,7 @@
 <header class="c-page-header">
     <nav class="c-page-header__nav">
         <a class="c-page-header__logo" href="/user/index/">
-            <img class="c-page-header__logo-img" src="#" alt="企业Logo">
+            <img class="c-page-header__logo-img" src="/static/images/kuairenmai.png" alt="企业Logo">
         </a>
         <form class="c-page-header__search-form" action="/user/login_handler/" method="get">
             <input type="hidden" name="w" value="search"/>
@@ -57,7 +58,7 @@
 <main class="page-main page-main--auth">
     <div class="c-auth">
         <div class="c-auth__header">
-            <h2 class="c-auth__title">登录BD之家</h2>
+            <h2 class="c-auth__title">登录快人脉</h2>
         </div>
         <div class="c-auth__content">
             <form class="c-auth__form" method="post">
@@ -83,14 +84,12 @@
 
             <script>
 					function KeyDown() {
-
 						if (event.keyCode == 13) {
 							logw();
 						}
 					}
 					function logw() {
 						if ($("#zphone").val() == '') {
-
 							$("#p1").show();
 							$("#ts").text("请填写手机号!");
 						} else {
@@ -101,19 +100,18 @@
 								$("#ts").text("登录中!");
 								var zzphone = $("#zphone").val();
 								var zzpass = $("#zpass").val();
-								$.post("logw.php", { zphone: "" + zzphone + "", zpass: "" + zzpass + "" },
-									function (data) {
-										if (data == 1) {
-											$("#p1").show();
-											$("#ts").text("密码错误");
-										}
+								$.ajax({
+                                    type:"POST",
+                                    url:"",
+                                    data:{},
+                                    dataType:'json',
+                                    success:function (result) {
 
-										if (data == 2) {
-											$("#p1").show();
-											$("#ts").text("登陆成功");
-											top.location = "http://www.mybdhome.com/user/";
-										}
-									});
+                                    },
+                                    error:function (result) {
+
+                                    }
+                                })
 
 							}
 
@@ -144,15 +142,15 @@
     </nav>
     <p class="c-page-footer__row c-pagte-footer__contact"><span
             class="c-page-footer__contact-title c-page-footer__text">联系我们&nbsp;&#124;</span><span
-            class="c-page-footer__text">&nbsp;客服QQ:&nbsp;623690500&nbsp;&#47;</span>
-        <!--<span class="c-page-footer__text">&nbsp;联系电话:&nbsp;027-87780143 （广告推销勿扰）&nbsp;&#47;</span>-->
-        <span class="c-page-footer__text">&nbsp;地址:&nbsp;武汉市洪山区书城路17号&nbsp;</span></p>
+            class="c-page-footer__text">&nbsp;客服QQ:&nbsp;123456789&nbsp;&#47;</span>
+        <!--<span class="c-page-footer__text">&nbsp;联系电话:&nbsp;038-123466789 （广告推销勿扰）&nbsp;&#47;</span>-->
+        <span class="c-page-footer__text">&nbsp;地址:&nbsp;深圳市南山区大冲商务中心13楼&nbsp;</span></p>
 
 
     <hr class="c-page-footer__separator">
     <p class="c-page-footer__row c-page-footer__certification"><span
-            class="c-page-footer__text">武汉优上科技有限公司&nbsp;&#124;</span><span
-            class="c-page-footer__text">&nbsp;鄂ICP备17005716号-2</span></p>
+            class="c-page-footer__text">深圳泽林科技有限公司&nbsp;&#124;</span><span
+            class="c-page-footer__text">&nbsp;粤ICP备17005716号-2</span></p>
 </footer>
 <script src="/static/js/jquery.js"></script>
 <script src="/static/js/popper.js"></script>
