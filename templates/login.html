@@ -12,6 +12,7 @@
         body {
             min-width: 1280px;
         }
+
     </style>
 
     <link rel="stylesheet" href="/static/css/y.css">
@@ -64,10 +65,10 @@
             <form class="c-auth__form" id="login_from" action="/user/login_handler/" method="post">
                 {% csrf_token %}
                 <div class="c-auth__form-group c-auth__form-group--phone">
-                    <input class="c-auth__input" placeholder="手机号" name="phone" id="zphone" type="text" required>
+                    <input class="c-auth__input" placeholder="帐号" name="username" id="username" type="text" required>
                 </div>
                 <div class="c-auth__form-group c-auth__form-group--password">
-                    <input class="c-auth__input" placeholder="密码" name="pass" id="zpass" type="password"
+                    <input class="c-auth__input" placeholder="密码" name="password" id="password" type="password"
                            onkeydown="KeyDown()" required>
                 </div>
                 <div class="c-auth__form-group c-auth__form-group--action"
@@ -93,19 +94,35 @@
                 function logw() {
                     if ($("#zphone").val() == '') {
                         $("#p1").show();
-                        $("#ts").text("请填写手机号!");
+                        $("#ts").text("请填写帐号!");
                     } else {
                         if ($("#zpass").val() == '') {
                             $("#p1").show();
                             $("#ts").text("请填写密码!");
                         } else {
                             $("#ts").text("登录中!");
-                            $("#login_from").submit()
+                            var username=$('#username').val()
+                            var password=$('#password').val()
+
+                            <!--$("#login_from").submit()-->
+                            $.ajax({
+                              url:'/user/login_handler/',
+                              type:'POST',
+                              dataType:'json'
+                              data:{'username':username,'password':password},
+                              success:(result){
+                                    alert(result)
+                              },
+                              error:(result){
+                                    alert(result)
+                              }
+                            })
                         }
                     }
                 }
 
                 $("#p11").hide();
+
             </script>
 
             <div class="c-auth__more">

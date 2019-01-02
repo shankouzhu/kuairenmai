@@ -1,5 +1,7 @@
 from django.shortcuts import render, HttpResponse, redirect
 from user.models import Userinfo
+import json
+
 
 # Create your views here.
 def index(request):
@@ -11,12 +13,16 @@ def login(request):
 
 
 def login_handler(request):
+    resp = {'status': 400, 'data': 'login fail'}
     if request.method == "POST":
-        phone=request.POST.get("phone")
-        passwd=request.POST.get("pass")
-        Userinfo.objects.get(username=phone)
+        usernm = request.POST.get("username")
+        passwd = request.POST.get("password")
+        print(usernm, passwd)
+        # Userinfo.objects.get(username=phone)
+        resp
+        return HttpResponse(json.dumps(resp), content_type="application/json")
     else:
-        return redirect('/user/login/')
+        return HttpResponse(json.dumps(resp), content_type="application/json")
 
 
 def register(request):
