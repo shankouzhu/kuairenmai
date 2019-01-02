@@ -3,7 +3,6 @@ from django.http import HttpResponse
 from user.models import Userinfo
 import json
 
-
 # Create your views here.
 def index(request):
     return render(request, 'index.html')
