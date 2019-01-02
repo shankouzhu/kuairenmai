@@ -5,6 +5,7 @@ from user import common
 from io import BytesIO
 import json
 
+
 # Create your views here.
 # 主页
 def index(request):
@@ -50,10 +51,25 @@ def register(request):
 def register_handler(request):
     resp = {'status': 400, 'msg': '非法注册'}
     if request.method == "POST":
-        username=request.POST.get('zphone')
-        msgcode=request.POST.get('zcode1')
-        passwd1=request.POST.get('zpass')
-        passwd2=request.POST.get('zpass2')
+        username = request.POST.get('zphone')
+        msgcode = request.POST.get('zcode1')
+        passwd1 = request.POST.get('zpass')
+        passwd2 = request.POST.get('zpass2')
+        if (passwd1 == passwd2):
+            if (request.session.get('msgcode') == msgcode):
+                user = Userinfo()
+                user.username = username
+                user.password = common.md5(str(passwd1).encode('utf-8'))
+                user.save()
+                resp['status'] = 200
+                resp['msg'] = '注册成功，请登录'
+                return render(request, 'login.html', resp)
+            else:
+                resp['msg'] = '验证码不正确'
+                return render(request, 'register.html', resp)
+        else:
+            resp['msg'] = '两次密码不一致'
+            return render(request, 'register.html', resp)
 
     return render(request, 'register.html', resp)
 
@@ -62,7 +78,7 @@ def register_handler(request):
 def register_sendmessage(request):
     # 获取电话号码
     moblie = request.GET.get('phone')
-    print(moblie)
+    # print(moblie)
     # 通过手机去查找用户是否已经注册
     user = Userinfo.objects.filter(username=moblie)
     if len(user) == 1:
