@@ -6,13 +6,13 @@ from django.db import models
 class Userinfo(models.Model):
     username = models.CharField(max_length=20, null=False)  # 帐号
     password = models.CharField(max_length=64, null=False)  # 密码
-    nickname = models.CharField(max_length=20, null=True)  # 昵称
+    nickname = models.CharField(max_length=20, null=True, default="")  # 昵称
     phone_number = models.CharField(max_length=11, null=False)  # 电话号码
     vip = models.IntegerField(default=0)  # 权限
-    wechar = models.CharField(max_length=20, null=True)  # 威信
-    QQ = models.CharField(max_length=20, null=True)  # qq
-    bankcard = models.CharField(max_length=20, null=True)  # 银行卡
-    headimg = models.ImageField(upload_to='user/', null=True)  # 头像
+    wechar = models.CharField(max_length=20, null=True, default="")  # 威信
+    QQ = models.CharField(max_length=20, null=True, default="")  # qq
+    bankcard = models.CharField(max_length=20, null=True, default="")  # 银行卡
+    headimg = models.ImageField(upload_to='user/', default='user/tx00.png')  # 头像
     requirement_count = models.IntegerField(default=0)  # 需求总数
     createtime = models.DateTimeField(auto_now=True)  # 创建时间
 

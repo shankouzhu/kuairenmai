@@ -186,3 +186,46 @@ def upass_handler(request):
             return render(request, 'upass.html', resp)
 
     return render(request, 'upass.html', resp)
+
+
+# 个人中心-我的资料
+@checklogin
+def userindex(request):
+    username = request.session.get('username')  # 获取登录用户名
+    u = Userinfo.objects.filter(username=username)  # 获取用户对象
+    if len(u) == 1:
+        u = u[0]
+        nkname = u.nickname  # 提取有用数据
+        phone = u.phone_number if u.phone_number else u.username
+        headimg = u.headimg
+        vip = u.vip
+        company = u.professional.company
+        brand = u.professional.brand
+        job = u.professional.office
+
+        content = {'flag': 1, 'nkname': nkname, 'phone': phone, 'headimg': headimg, 'vip': vip,
+                   'company': company, 'brand': brand, 'job': job}
+        # print(content)
+        return render(request, 'user/user.html', content)
+    else:
+        return redirect("/user/login/")
+
+
+# 个人中心-我的特权
+@checklogin
+def uservip(request):
+    username = request.session.get('username')  # 获取登录用户名
+    u = Userinfo.objects.filter(username=username)  # 获取用户对象
+    if len(u) == 1:
+        u = u[0]
+        vip = u.vip
+        content = {'flag': 2, 'vip': vip}
+        return render(request, 'user/vip.html', content)
+    else:
+        return redirect("/user/login")
+
+
+@checklogin
+def mytools(request):
+    content = {'flag': 3}
+    return render(request, 'user/vip.html', content)
