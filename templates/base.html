@@ -29,8 +29,10 @@
 <body>
 <div class="c-top-bar">
     <div class="c-top-bar__nav">
-        <div style="float:left;color: #fff;font-size: 14px;margin-top: 6px;">来钱快，上快人脉
+
+        <div style="float:left;color: #fff;font-size: 14px;margin-top: 6px;">来钱快，来快人脉
         </div>
+        {% if not username %}
         <ul class="list-inline c-top-bar__nav-list">
             <li class="list-inline-item c-top-bar__nav-item">
                 <a class="c-top-bar__nav-link" href="/user/login/">登录</a>
@@ -38,10 +40,20 @@
             <li class="list-inline-item c-top-bar__nav-item">
                 <a class="c-top-bar__nav-link" href="/user/register/">注册</a>
             </li>
-
         </ul>
-
-
+        {% else %}
+        <ul class="list-inline c-top-bar__nav-list">
+            <li class="list-inline-item c-top-bar__nav-item">
+                <a class="c-top-bar__nav-link" href="#">{{username}}</a>
+            </li>
+            <li class="list-inline-item c-top-bar__nav-item">
+                <a class="c-top-bar__nav-link" href="#">消息</a>
+            </li>
+            <li class="list-inline-item c-top-bar__nav-item">
+                <a class="c-top-bar__nav-link" href="/user/dellogin/">注销</a>
+            </li>
+        </ul>
+        {% endif %}
     </div>
 </div>
 <header class="c-page-header">

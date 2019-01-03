@@ -5,16 +5,20 @@ body, dd, dl, dt, h2, h3, h4, h6, li, ol, p, ul {
     -webkit-text-size-adjust: none;
 }
 
+
 .carousel{
     margin-left: 5px;
-    margin-right: 5px;
 }
 body{
-    min-width: 1280px;
+    min-width: 1300px;
 }
 
 .c-trade-filter-panel{
-    margin:5px 10px 5px 5px;
+    margin:5px 0 5px 5px;
+}
+
+.justify-content-md-center{
+     min-width: 1280px;
 }
 
 .nav-tabs {
@@ -37,7 +41,7 @@ body{
 
 .c-trade-filter-panel{
     text-align: center;
-    min-width: 1280px;
+    /*min-width: 1280px;*/
 }
 
 

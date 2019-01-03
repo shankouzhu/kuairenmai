@@ -8,6 +8,11 @@
         <div class="c-auth__header">
             <h2 class="c-auth__title">登录快人脉</h2>
         </div>
+        {% if msg %}
+        <div><span style="color: red;">
+            {{msg}}
+        </span></div>
+        {%endif%}
         <div class="c-auth__content">
             <form class="c-auth__form" id="loginfrom" action="/user/login_handler/" method="post">
                 {% csrf_token %}
@@ -74,12 +79,13 @@
                 }
 
                 $("#p11").hide();
+
             </script>
 
             <div class="c-auth__more">
-                <a class="c-auth__forgot-password" href="upass.html">忘记密码</a><span class="c-auth__register"><span
+                <a class="c-auth__forgot-password" href="/user/upass/">忘记密码</a><span class="c-auth__register"><span
                     class="c-auth__register-tip">还未注册</span>
-						<a class="c-auth__link" href="register.html">去注册</a>
+						<a class="c-auth__link" href="/user/register/">去注册</a>
 					</span>
             </div>
         </div>
