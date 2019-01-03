@@ -1,6 +1,6 @@
 from django.shortcuts import render, redirect
 from django.http import HttpResponse
-from user.models import Userinfo
+from user.models import *
 from user import common
 from io import BytesIO
 import json
@@ -230,7 +230,30 @@ def uservip(request):
         return redirect("/user/login")
 
 
+# 个人中心-我的道具
 @checklogin
 def mytools(request):
     content = {'flag': 3}
     return render(request, 'user/mytools.html', addusername(content, request))
+
+
+# 个人中心-我的消息
+@checklogin
+def mymessage(request):
+    content = {'flag': 4}
+    return render(request, 'user/message.html', addusername(content, request))
+
+
+# 个人中心-职业信息
+@checklogin
+def account(request):
+    content = {'flag': 1}
+    jobs = Job.objects.all()
+    content['jobs'] = jobs
+    un = request.session.get('username')
+    user = Userinfo.objects.filter(username=un)
+    if len(user) == 1:
+        user = user[0]
+        return render(request, 'user/accountinfo.html', addusername(content, request))
+
+    return redirect("/user/login")

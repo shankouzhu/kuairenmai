@@ -67,10 +67,10 @@
                 <a class="c-user-banner__nav-link c-user-banner__logo" href="/user/index/"><img
                         class="c-user-banner__logo-img" src="/static/images/kuairenmai.png" alt="Logo"></a>
             </li>
-            <li class="list-inline-item c-user-banner__nav-item  is-active">
+            <li class="list-inline-item c-user-banner__nav-item">
                 <a class="c-user-banner__nav-link" href="/user/userindex/">个人设置</a>
             </li>
-            <li class="list-inline-item c-user-banner__nav-item">
+            <li class="list-inline-item c-user-banner__nav-item  is-active">
                 <a class="c-user-banner__nav-link" href="/user/account/">账号设置</a>
             </li>
         </ul>
@@ -85,20 +85,14 @@
                 <header class="c-user-sidenav__header">
                     <h3 class="c-user-sidenav__title">个人中心</h3></header>
                 <ul class="list-unstyled c-user-sidenav__nav-list">
-                    <li class="c-user-sidenav__nav-item {% if flag == 1%}is-active {%endif%}">
-                        <a class="c-user-sidenav__nav-link" href="/user/userindex/">我的资料</a>
+                    <li class="c-user-sidenav__nav-item {% if flag == 1%}is-active{%endif%}">
+                        <a class="c-user-sidenav__nav-link" href="/user/account/">职业信息</a>
                     </li>
-                    <li class="c-user-sidenav__nav-item {% if flag == 2%}is-active {%endif%} ">
-                        <a class="c-user-sidenav__nav-link" href="/user/uservip/">我的特权</a>
+                    <li class="c-user-sidenav__nav-item {% if flag == 2%}is-active{%endif%}">
+                        <a class="c-user-sidenav__nav-link" href="#">联系方式</a>
                     </li>
-                    <li class="c-user-sidenav__nav-item {% if flag == 3%}is-active {%endif%}">
-                        <a class="c-user-sidenav__nav-link" href="/user/mytools/">我的道具</a>
-                    </li>
-                    <li class="c-user-sidenav__nav-item {% if flag == 4%}is-active {%endif%}">
-                        <a class="c-user-sidenav__nav-link" href="/user/mymessage/">我的消息</a>
-                    </li>
-                    <li class="c-user-sidenav__nav-item {% if flag == 5%}is-active {%endif%}">
-                        <a class="c-user-sidenav__nav-link" href="/user/dellogin/">退出登录</a>
+                    <li class="c-user-sidenav__nav-item {% if flag == 3%}is-active{%endif%}">
+                        <a class="c-user-sidenav__nav-link" href="#">修改密码</a>
                     </li>
                 </ul>
             </nav>
