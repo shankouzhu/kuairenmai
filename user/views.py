@@ -188,6 +188,11 @@ def upass_handler(request):
     return render(request, 'upass.html', resp)
 
 
+def addusername(content, request):
+    content['username'] = request.session.get('username')
+    return content
+
+
 # 个人中心-我的资料
 @checklogin
 def userindex(request):
@@ -206,7 +211,7 @@ def userindex(request):
         content = {'flag': 1, 'nkname': nkname, 'phone': phone, 'headimg': headimg, 'vip': vip,
                    'company': company, 'brand': brand, 'job': job}
         # print(content)
-        return render(request, 'user/user.html', content)
+        return render(request, 'user/user.html', addusername(content, request))
     else:
         return redirect("/user/login/")
 
@@ -220,7 +225,7 @@ def uservip(request):
         u = u[0]
         vip = u.vip
         content = {'flag': 2, 'vip': vip}
-        return render(request, 'user/vip.html', content)
+        return render(request, 'user/vip.html', addusername(content, request))
     else:
         return redirect("/user/login")
 
@@ -228,4 +233,4 @@ def uservip(request):
 @checklogin
 def mytools(request):
     content = {'flag': 3}
-    return render(request, 'user/vip.html', content)
+    return render(request, 'user/mytools.html', addusername(content, request))
