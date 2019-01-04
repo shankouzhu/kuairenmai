@@ -188,6 +188,7 @@ def upass_handler(request):
     return render(request, 'upass.html', resp)
 
 
+# 字典添加username
 def addusername(content, request):
     content['username'] = request.session.get('username')
     return content
@@ -251,9 +252,127 @@ def account(request):
     jobs = Job.objects.all()
     content['jobs'] = jobs
     un = request.session.get('username')
+    content['username'] = un
     user = Userinfo.objects.filter(username=un)
     if len(user) == 1:
         user = user[0]
-        return render(request, 'user/accountinfo.html', addusername(content, request))
+        company = user.professional.company
+        brand = user.professional.brand
+        job = user.professional.office
+        truename = user.professional.truename
+        cpintroducion = user.professional.companyintroducion
+        defjobid = user.professional.jobs.id
+        content['company'] = company
+        content['brand'] = brand
+        content['job'] = job
+        content['truename'] = truename
+        content['cpintroducion'] = cpintroducion
+        content['defjobid'] = defjobid
+        # print(content)
+        return render(request, 'user/accountinfo.html', content)
 
     return redirect("/user/login")
+
+
+# 个人中心-职业信息-保存逻辑
+@checklogin
+def jobinfo(request):
+    if request.method == 'POST':
+        jobid = request.POST.get('industry')
+        company = request.POST.get('company')
+        brand = request.POST.get('brand')
+        zjob = request.POST.get('zjob')
+        xname = request.POST.get('xname')
+        intro = request.POST.get('intro')
+        un = request.session.get('username')
+        user = Userinfo.objects.get(username=un)
+        jobobj = Job.objects.get(pk=jobid)
+        user.professional.company = company
+        user.professional.brand = brand
+        user.professional.office = zjob
+        user.professional.truename = xname
+        user.professional.companyintroducion = intro
+        user.professional.jobs = jobobj
+        user.save()
+        content = {'flag': 1, 'msg': '修改成功'}
+        content['company'] = company
+        content['brand'] = brand
+        content['job'] = zjob
+        content['truename'] = xname
+        jobs = Job.objects.all()
+        content['jobs'] = jobs
+        content['cpintroducion'] = intro
+        content['defjobid'] = jobid
+        return render(request, 'user/accountinfo.html', addusername(content, request))
+    else:
+        return redirect("/user/login/")
+
+
+# 个人中心-联系方式
+@checklogin
+def contactway(request):
+    content = {'flag': 2}
+    un = request.session.get('username')
+    user = Userinfo.objects.get(username=un)
+    wechar = user.wechar
+    qq = user.QQ
+    email = user.email
+    content['wechar'] = wechar
+    content['qq'] = qq
+    content['email'] = email
+    return render(request, 'user/usercontactway.html', content)
+
+
+# 个人中心-联系方式-保存逻辑
+@checklogin
+def contactwaysave(request):
+    if request.method == 'POST':
+        wechar = request.POST.get('wei')
+        qq = request.POST.get('qq')
+        email = request.POST.get('email')
+        un = request.session.get('username')
+        content = {'flag': 2, 'username': un}
+        user = Userinfo.objects.get(username=un)
+        user.wechar = wechar
+        user.qq = qq
+        user.email = email
+        user.save()
+        content['wechar'] = wechar
+        content['qq'] = qq
+        content['email'] = email
+        content['msg'] = '修改成功'
+        return render(request, 'user/usercontactway.html', content)
+    else:
+        return redirect("/user/login/")
+
+
+# 个人中心-修改密码
+@checklogin
+def changepasswd(request):
+    content = {'flag': 3}
+    return render(request, 'user/changepasswd.html', addusername(content, request))
+
+
+# 个人中心-修改密码-保存逻辑
+@checklogin
+def changepasswdsave(request):
+    if request.method == 'POST':
+        zpass = request.POST.get('zpass')
+        npass = request.POST.get('npass')
+        npass2 = request.POST.get('npass2')
+        un = request.session.get('username')
+        content = {'flag': 3, 'username': un}
+        user = Userinfo.objects.get(username=un)
+
+        if npass == npass2:
+            if user.password == common.cmd5(zpass):
+                user.password = common.cmd5(npass)
+                user.save()
+                content['msg'] = '密码修改成功'
+            else:
+                content['msg'] = '当前密码正确'
+        else:
+            content['msg'] = '两次密码不一致'
+        return render(request, 'user/changepasswd.html', content)
+    else:
+        return redirect("/user/login/")
