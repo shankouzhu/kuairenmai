@@ -287,13 +287,14 @@ def jobinfo(request):
         un = request.session.get('username')
         user = Userinfo.objects.get(username=un)
         jobobj = Job.objects.get(pk=jobid)
-        user.professional.company = company
-        user.professional.brand = brand
-        user.professional.office = zjob
-        user.professional.truename = xname
-        user.professional.companyintroducion = intro
-        user.professional.jobs = jobobj
-        user.save()
+        prof = Professional.objects.get(userid_id=user.id)
+        prof.company = company
+        prof.brand = brand
+        prof.office = zjob
+        prof.truename = xname
+        prof.companyintroducion = intro
+        prof.jobs = jobobj
+        prof.save()
         content = {'flag': 1, 'msg': '修改成功'}
         content['company'] = company
         content['brand'] = brand
