@@ -3,9 +3,15 @@ from django.http import HttpResponse
 
 
 def router(request, **kwargs):
+    """
+    自动路由系统
+    :param request: 请求
+    :param kwargs: 字段
+    :return:
+    """
     appandfun = ['app', 'function']
-    app = kwargs[appandfun[0]]
-    fun = kwargs[appandfun[1]]
+    app = kwargs.get(appandfun[0], None)
+    fun = kwargs.get(appandfun[1], None)
 
     newkwargs = {}
     for key, value in kwargs.items():
@@ -17,6 +23,7 @@ def router(request, **kwargs):
         viewObj = getattr(appObj, 'views')
         funObj = getattr(viewObj, fun)
         result = funObj(request, **newkwargs)
+
     except (ImportError, AttributeError) as e:
         print(e)
         return HttpResponse("404 Forbidden\n{}".format(e))

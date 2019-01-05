@@ -18,15 +18,14 @@ from django.urls import path, re_path
 from django.views.generic.base import RedirectView
 from kuairenmai import settings
 from django.conf.urls.static import static
-from .autorouter import router
+from kuairenmai.autorouter import router
 
 urlpatterns = [
     path('admin/', admin.site.urls),
     re_path(r'favicon.ico', RedirectView.as_view(url=r'/static/favicon.ico'), name='favicon'),
     re_path(r'^(?P<app>(\w+))/$', router, {'function': 'index'}),
     re_path(r'^(?P<app>(\w+))/(?P<function>(\w+))/$', router),
-    re_path(r'^(?P<app>(\w+))/(?P<function>(\w+))/(?P<page>(\d*))$', router),
+    re_path(r'^(?P<app>(\w+))/(?P<function>(\w+))/(?P<page>(\d+))$', router),
     re_path('^(?P<app>(\w+))/(?P<function>(\w+))/(?P<page>(\d+))/(?P<id>(\d+))/$', router),
 ]
-
 urlpatterns += static(settings.MEDIA_URL, document_root=settings.MEDIA_ROOT)

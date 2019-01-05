@@ -94,4 +94,18 @@ def send_message(phone):
     response_str = response.read()
     # 关闭连接
     conn.close()
-    return message_code,response_str
+    return message_code, response_str
+
+
+def strtoint(obj, default=1):
+    """
+    字符转数字
+    :param obj:
+    :param default:
+    :return:
+    """
+    try:
+        rs = int(obj)
+    except Exception:
+        rs = default
+    return rs

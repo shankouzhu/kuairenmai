@@ -333,31 +333,20 @@
         <div class="c-trade__main">
             <div class="c-trade-sort">
                 <ul class="list-inline c-trade-sort__item-list">
-
-
-                    <a class="list-inline-item c-trade-sort__item"
-                       href="http://www.mybdhome.com/?x1=&x2=&x3=&x4=&x5=1&x11="/>
-                    <label class="c-trade-sort__item-name" style="background-color: #33C08A;
-color: #ffffff;">默认回复</label>
-
-                    </a> <a class="list-inline-item c-trade-sort__item"
-                            href="http://www.mybdhome.com/?x1=&x2=&x3=&x4=&x5=2&x11="/>
+                    <a class="list-inline-item c-trade-sort__item" href="#"/>
+                    <label class="c-trade-sort__item-name"
+                           style="background-color: #33C08A;color: #ffffff;">默认回复</label>
+                    </a> <a class="list-inline-item c-trade-sort__item" href="#"/>
                     <label class="c-trade-sort__item-name">发布时间</label>
 
-                    </a> <a class="list-inline-item c-trade-sort__item"
-                            href="http://www.mybdhome.com/?x1=&x2=&x3=&x4=&x5=3&x11="/>
+                    </a> <a class="list-inline-item c-trade-sort__item" href="#"/>
                     <label class="c-trade-sort__item-name">查看数</label>
 
-                    </a> <a class="list-inline-item c-trade-sort__item"
-                            href="http://www.mybdhome.com/?x1=&x2=&x3=&x4=&x5=4&x11="/>
+                    </a> <a class="list-inline-item c-trade-sort__item" href="#"/>
                     <label class="c-trade-sort__item-name">回复数</label>
-
                     </a>
-
-
                 </ul>
                 <ul class="list-inline c-trade-sort__item-list">
-
                     <li class="list-inline-item c-trade-sort__item"><input class="c-trade-sort__item-field" id="range3"
                                                                            type="radio"
                                                                            name="range" value=""><label
@@ -367,7 +356,6 @@ color: #ffffff;">默认回复</label>
                         <img src="/static/asserts/images/header-banner/gg.png" width="20px"
                              style="margin-top: -5px;margin-right: 5px;"/>
                         <a target="_blank" href="#" style="margin-top: -5px;color: #777777;"/>
-
                         警惕骗子：有人冒充BD之家官方人员进行诈骗！ </a>
                     </label></li>
                 </ul>
@@ -376,9 +364,7 @@ color: #ffffff;">默认回复</label>
                 <li class="c-trade-card-item">
                     <!-- 绝对定位，卡片左上角ribbon-->
                     <div class="c-trade-card-item__recommendation" data-recommendation="true">
-                        <p class="c-trade-card-item__recommendation-ribbon" style="
-    background-color: #f5370c;
-">置顶</p>
+                        <p class="c-trade-card-item__recommendation-ribbon" style="background-color: #f5370c;">置顶</p>
                     </div>
 
 
@@ -386,14 +372,15 @@ color: #ffffff;">默认回复</label>
                         <!-- 卡片中靠左，包括figure和info overview-->
                         <div class="c-trade-card__overview">
                             <figure class="c-trade-card__avatar"><img class="c-trade-card__avatar-img"
-                                                                      src="/static/asserts/images/post-article/tx00.png" alt="头像">
-                                <figcaption class="c-trade-card__avatar-caption" style="
-    text-align: center;
-"><span style="color:red">盖世英雄</span></figcaption>
+                                                                      src="/static/asserts/images/post-article/tx00.png"
+                                                                      alt="头像">
+                                <figcaption class="c-trade-card__avatar-caption" style="text-align: center;"><span
+                                        style="color:red">盖世英雄</span></figcaption>
                             </figure>
                             <div class="c-trade-card__synopsis">
-                                <h4 class="c-trade-card__title"><a class="c-trade-card__link" target="_blank"
-                                                                   href="demand-10034.html" style="color:red">【1jiedan】日出万单，实力乙方，寻陆金所、云闪付、掌上生活、白条等CPA甲方！</a>
+                                <h4 class="c-trade-card__title">
+                                    <a class="c-trade-card__link" target="_blank" href="demand-10034.html"
+                                       style="color:red">【1jiedan】日出万单，实力乙方，寻陆金所、云闪付、掌上生活、白条等CPA甲方！</a>
                                 </h4>
                                 <div class="c-trade-card__desc"><span class="c-trade-card__desc-name">我们需要</span>
                                     <ul class="c-trade-card__desc-list">
@@ -421,15 +408,65 @@ color: #ffffff;">默认回复</label>
                         </div>
                     </div>
                 </li>
+                {%for dm in demandlist %}
+                <li class="c-trade-card-item">
+                    <!-- 绝对定位，卡片左上角ribbon-->
+                    {%if dm.demand.msglevel%}
+                    <div class="c-trade-card-item__recommendation" data-recommendation="true">
+                        <p class="c-trade-card-item__recommendation-ribbon" style="background-color: #f5370c;">置顶</p>
+                    </div>
+                    {%endif%}
+
+                    <div class="c-trade-card">
+                        <!-- 卡片中靠左，包括figure和info overview-->
+                        <div class="c-trade-card__overview">
+                            <figure class="c-trade-card__avatar"><img class="c-trade-card__avatar-img"
+                                                                      src="/media/{{dm.user_headimg}}"
+                                                                      alt="头像">
+                                <figcaption class="c-trade-card__avatar-caption" style="text-align: center;">
+                                    <span {%if dm.user_vip == 1 or dm.user_vip == 2%}style="color:red" {%endif%}>
+                                    {{dm.user_nickname}}</span></figcaption>
+                            </figure>
+                            <div class="c-trade-card__synopsis">
+                                <h4 class="c-trade-card__title">
+                                    <a class="c-trade-card__link" target="_blank" href="{{dm.demand.id}}"
+                                       {%if dm.user_vip == 1 or dm.user_vip == 2%}style="color:red" {%endif%}>{{dm.demand.title}}</a>
+                                </h4>
+                                <div class="c-trade-card__desc"><span class="c-trade-card__desc-name">我们需要</span>
+                                    <ul class="c-trade-card__desc-list">
+                                        <li class="list-inline-item c-trade-card__desc-item"><span
+                                                class="c-trade-card__desc-tag">费用支持</span></li>
+                                        <li class="list-inline-item c-trade-card__desc-item"><span
+                                                class="c-trade-card__desc-tag">产品</span></li>
+                                    </ul>
+                                </div>
+                                <div class="c-trade-card__desc"><span class="c-trade-card__desc-name">我们提供</span>
+                                    <ul class="c-trade-card__desc-list">
+
+                                        <li class="list-inline-item c-trade-card__desc-item"><span
+                                                class="c-trade-card__desc-tag">线上广告</span></li>
+                                    </ul>
+                                    <!-- 卡片中靠右，包括企业认证，发帖人职位名称、发帖时间、帖子查看人数等-->
+                                </div>
+                            </div>
+                        </div>
+                        <div class="c-trade-card__status">
+                            <div class="c-trade-card__certification" data-certification="true"> &nbsp;&nbsp;
+                                {{dm.catagory}}
+                            </div>
+
+                            <div class="c-trade-card__syslog" style="margin-top:73px;"><span class="c-trade-card__time">{{dm.demand.starttime}}</span><span
+                                    class="c-trade-card__viewnum">{{dm.demand.count}}</span></div>
+                        </div>
+                    </div>
+                </li>
+                {%endfor%}
             </ul>
             <nav class="c-pagination" aria-label="page navigation">
                 <ul class="pagination c-pagination__page-list">
                     <li class="page-item c-pagination__page-item">
-
-
                         <a class="page-link c-pagination__page-link"
-                           href="http://www.mybdhome.com/?x1=&x2=&x3=&x4=&x5=&x11=1" tabindex="-1">&#9666;&nbsp;上一页</a>
-
+                           href="#" tabindex="-1">&#9666;&nbsp;上一页</a>
                     </li>
 
                     <li class="active page-item c-pagination__page-item">

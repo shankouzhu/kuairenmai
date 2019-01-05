@@ -208,7 +208,6 @@ def userindex(request):
         company = u.professional.company
         brand = u.professional.brand
         job = u.professional.office
-
         content = {'flag': 1, 'nkname': nkname, 'phone': phone, 'headimg': headimg, 'vip': vip,
                    'company': company, 'brand': brand, 'job': job}
         # print(content)
