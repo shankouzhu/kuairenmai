@@ -73,24 +73,25 @@ WSGI_APPLICATION = 'kuairenmai.wsgi.application'
 # https://docs.djangoproject.com/en/2.1/ref/settings/#databases
 
 DATABASES = {
-    # 'default': {
-    #     'ENGINE': 'django.db.backends.mysql',
-    #     'NAME': 'kuairenmai',
-    #     'HOST': '192.168.7.232',
-    #     'POST': '3306',
-    #     'USER': 'zelin',
-    #     'PASSWORD': '123456',
-    #     'CHARSET': 'utf-8'
-    # }
     'default': {
         'ENGINE': 'django.db.backends.mysql',
         'NAME': 'kuairenmai',
-        'HOST': 'localhost',
+        'HOST': '192.168.7.232',
         'POST': '3306',
-        'USER': 'root',
+        'USER': 'zelin',
         'PASSWORD': '123456',
         'CHARSET': 'utf-8'
     }
+    #
+    # 'default': {
+    #     'ENGINE': 'django.db.backends.mysql',
+    #     'NAME': 'kuairenmai',
+    #     'HOST': 'localhost',
+    #     'POST': '3306',
+    #     'USER': 'root',
+    #     'PASSWORD': '123456',
+    #     'CHARSET': 'utf-8'
+    # }
 }
 
 # Password validation
