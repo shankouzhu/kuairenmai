@@ -6,12 +6,17 @@ from user.views import checklogin, addusername
 
 # Create your views here.
 # 需求发布页面
-@checklogin
+#@checklogin
 def demand(request):
     content = {}
     cf = Classification.objects.all()
     content['classobj'] = cf
     return render(request, 'demand/demandnew.html', addusername(content, request))
+
+
+
+def test(request):
+    return render(request, 'user/test.html')
 
 
 @checklogin
@@ -29,7 +34,6 @@ def publishdemand(request):
         comment = request.POST.get("zname")
         image = request.POST.get("zname")
         money = request.POST.get("zname")
-
         return render(request, 'demand/demandnew.html', addusername(content, request))
     else:
         return redirect("/user/login/")

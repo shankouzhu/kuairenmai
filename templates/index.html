@@ -2,6 +2,10 @@
 {%block titlecss%}
 <title>人脉网</title>
 {%endblock%}
+    <script src="/static/js/jquery.js"></script>
+    <script src="/static/js/popper.js"></script>
+    <script src="/static/js/bootstrap.js"></script>
+    <link rel="stylesheet" href="/static/css/bootstrap.css">
 {%block body%}
 <main class="page-main page-main--trade">
     <div id="carouselExampleIndicators" class="carousel slide" data-ride="carousel">
@@ -31,304 +35,57 @@
         </a>
     </div>
 
-
     <div class="c-trade-filter-panel">
         <div class="c-trade-filter">
             <div class="c-trade-filter__default">
-                <div class="c-trade-filter__type"><span class="c-trade-filter__type-name">需要</span>
-                    <ul class="c-trade-filter__option-list">
-                        <a href="http://www.mybdhome.com/?x1=&x2=&x3=&x4=&x5=&x11="/>
-                        <li class="c-trade-filter__option-item"><label class="c-trade-filter__option-name">全部</label>
-                        </li>
-                        </a><a href="http://www.mybdhome.com/?x1=线上广告&x2=&x3=&x4=&x5=&x11="/>
-                        <li class="c-trade-filter__option-item"><label class="c-trade-filter__option-name">线上广告</label>
-                        </li>
-                        </a><a href="http://www.mybdhome.com/?x1=线下广告&x2=&x3=&x4=&x5=&x11="/>
-                        <li class="c-trade-filter__option-item"><label class="c-trade-filter__option-name">线下广告</label>
-                        </li>
-                        </a><a href="http://www.mybdhome.com/?x1=优惠券&x2=&x3=&x4=&x5=&x11="/>
-                        <li class="c-trade-filter__option-item"><label class="c-trade-filter__option-name">优惠券</label>
-                        </li>
-                        </a><a href="http://www.mybdhome.com/?x1=微信推文&x2=&x3=&x4=&x5=&x11="/>
-                        <li class="c-trade-filter__option-item"><label class="c-trade-filter__option-name">微信推文</label>
-                        </li>
-                        </a><a href="http://www.mybdhome.com/?x1=实物赞助&x2=&x3=&x4=&x5=&x11="/>
-                        <li class="c-trade-filter__option-item"><label class="c-trade-filter__option-name">实物赞助</label>
-                        </li>
-                        </a><a href="http://www.mybdhome.com/?x1=资源置换&x2=&x3=&x4=&x5=&x11="/>
-                        <li class="c-trade-filter__option-item"><label class="c-trade-filter__option-name">资源置换</label>
-                        </li>
-                        </a><a href="http://www.mybdhome.com/?x1=线上联合活动&x2=&x3=&x4=&x5=&x11="/>
-                        <li class="c-trade-filter__option-item"><label
-                                class="c-trade-filter__option-name">线上联合活动</label></li>
-                        </a><a
-                            href="http://www.mybdhome.com/?x1=线下联合活动&x2=&x3=&x4=&x5=&x11="/>
-                        <li class="c-trade-filter__option-item"><label
-                                class="c-trade-filter__option-name">线下联合活动</label></li>
-                        </a><a
-                            href="http://www.mybdhome.com/?x1=分销/代理&x2=&x3=&x4=&x5=&x11="/>
-                        <li class="c-trade-filter__option-item"><label class="c-trade-filter__option-name">分销/代理</label>
-                        </li>
-                        </a>
-                    </ul>
+                <div class="c-trade-filter__type">
+                    <span class="c-trade-filter__type-name">
+                    </span>
                 </div>
-                <button class="c-btn c-btn-text c-trade-filter__unfold" data-toggle="collapse"
-                        data-target="#collapse-need">更多
-                </button>
-            </div>
-            <div class="collapse c-trade-filter__more is-folded" id="collapse-need">
-                <ul class="c-trade-filter__option-list c-trade-filter__option-list--more">
-                    <a href="http://www.mybdhome.com/?x1=产品&x2=&x3=&x4=&x5=&x11="/>
-                    <li class="c-trade-filter__option-item"><label class="c-trade-filter__option-name">产品</label></li>
-                    </a><a href="http://www.mybdhome.com/?x1=免费体验&x2=&x3=&x4=&x5=&x11="/>
-                    <li class="c-trade-filter__option-item"><label class="c-trade-filter__option-name">免费体验</label></li>
-                    </a><a href="http://www.mybdhome.com/?x1=企业服务&x2=&x3=&x4=&x5=&x11="/>
-                    <li class="c-trade-filter__option-item"><label class="c-trade-filter__option-name">企业服务</label></li>
-                    </a><a href="http://www.mybdhome.com/?x1=场地/社区&x2=&x3=&x4=&x5=&x11="/>
-                    <li class="c-trade-filter__option-item"><label class="c-trade-filter__option-name">场地/社区</label>
-                    </li>
-                    </a><a href="http://www.mybdhome.com/?x1=费用支持&x2=&x3=&x4=&x5=&x11="/>
-                    <li class="c-trade-filter__option-item"><label class="c-trade-filter__option-name">费用支持</label></li>
-                    </a><a href="http://www.mybdhome.com/?x1=其他&x2=&x3=&x4=&x5=&x11="/>
-                    <li class="c-trade-filter__option-item"><label class="c-trade-filter__option-name">其他</label></li>
-                    </a>
-                </ul>
             </div>
         </div>
         <div class="c-trade-filter">
             <div class="c-trade-filter__default">
-                <div class="c-trade-filter__type"><span class="c-trade-filter__type-name">提供</span>
-                    <ul class="c-trade-filter__option-list">
-                        <a href="http://www.mybdhome.com/?x1=&x2=&x3=&x4=&x5=&x11="/>
-                        <li class="c-trade-filter__option-item"><label class="c-trade-filter__option-name">全部</label>
-                        </li>
-                        </a><a href="http://www.mybdhome.com/?x1=&x2=线上广告&x3=&x4=&x5=&x11="/>
-                        <li class="c-trade-filter__option-item"><label class="c-trade-filter__option-name">线上广告</label>
-                        </li>
-                        </a><a href="http://www.mybdhome.com/?x1=&x2=线下广告&x3=&x4=&x5=&x11="/>
-                        <li class="c-trade-filter__option-item"><label class="c-trade-filter__option-name">线下广告</label>
-                        </li>
-                        </a><a href="http://www.mybdhome.com/?x1=&x2=优惠券&x3=&x4=&x5=&x11="/>
-                        <li class="c-trade-filter__option-item"><label class="c-trade-filter__option-name">优惠券</label>
-                        </li>
-                        </a><a href="http://www.mybdhome.com/?x1=&x2=微信推文&x3=&x4=&x5=&x11="/>
-                        <li class="c-trade-filter__option-item"><label class="c-trade-filter__option-name">微信推文</label>
-                        </li>
-                        </a><a href="http://www.mybdhome.com/?x1=&x2=实物赞助&x3=&x4=&x5=&x11="/>
-                        <li class="c-trade-filter__option-item"><label class="c-trade-filter__option-name">实物赞助</label>
-                        </li>
-                        </a><a href="http://www.mybdhome.com/?x1=&x2=资源置换&x3=&x4=&x5=&x11="/>
-                        <li class="c-trade-filter__option-item"><label class="c-trade-filter__option-name">资源置换</label>
-                        </li>
-                        </a><a href="http://www.mybdhome.com/?x1=&x2=线上联合活动&x3=&x4=&x5=&x11="/>
-                        <li class="c-trade-filter__option-item"><label
-                                class="c-trade-filter__option-name">线上联合活动</label></li>
-                        </a><a
-                            href="http://www.mybdhome.com/?x1=&x2=线下联合活动&x3=&x4=&x5=&x11="/>
-                        <li class="c-trade-filter__option-item"><label
-                                class="c-trade-filter__option-name">线下联合活动</label></li>
-                        </a><a
-                            href="http://www.mybdhome.com/?x1=&x2=分销/代理&x3=&x4=&x5=&x11="/>
-                        <li class="c-trade-filter__option-item"><label class="c-trade-filter__option-name">分销/代理</label>
-                        </li>
-                        </a>
-                    </ul>
+                <div class="c-trade-filter__type">
+                    <span class="c-trade-filter__type-name">
+                        需求类型
+                    </span>
+                    <div class="dropdown">
+                        <button id="dLabel" type="button" data-toggle="dropdown" aria-haspopup="true"
+                                aria-expanded="false">
+                            Dropdown trigger
+                        </button>
+                        <div class="dropdown-menu" aria-labelledby="dLabel">
+                            ...
+                        </div>
+                    </div>
                 </div>
-                <button class="c-btn c-btn-text c-trade-filter__unfold" data-toggle="collapse"
-                        data-target="#collapse-offer">更多
-                </button>
-            </div>
-            <div class="collapse c-trade-filter__more is-folded" id="collapse-offer">
-                <ul class="c-trade-filter__option-list c-trade-filter__option-list--more">
-                    <a href="http://www.mybdhome.com/?x1=&x2=产品&x3=&x4=&x5=&x11="/>
-                    <li class="c-trade-filter__option-item"><label class="c-trade-filter__option-name">产品</label></li>
-                    </a><a href="http://www.mybdhome.com/?x1=&x2=免费体验&x3=&x4=&x5=&x11="/>
-                    <li class="c-trade-filter__option-item"><label class="c-trade-filter__option-name">免费体验</label></li>
-                    </a><a href="http://www.mybdhome.com/?x1=&x2=企业服务&x3=&x4=&x5=&x11="/>
-                    <li class="c-trade-filter__option-item"><label class="c-trade-filter__option-name">企业服务</label></li>
-                    </a><a href="http://www.mybdhome.com/?x1=&x2=场地/社区&x3=&x4=&x5=&x11="/>
-                    <li class="c-trade-filter__option-item"><label class="c-trade-filter__option-name">场地/社区</label>
-                    </li>
-                    </a><a href="http://www.mybdhome.com/?x1=&x2=费用支持&x3=&x4=&x5=&x11="/>
-                    <li class="c-trade-filter__option-item"><label class="c-trade-filter__option-name">费用支持</label></li>
-                    </a><a href="http://www.mybdhome.com/?x1=&x2=其他&x3=&x4=&x5=&x11="/>
-                    <li class="c-trade-filter__option-item"><label class="c-trade-filter__option-name">其他</label></li>
-                    </a>
-
-                </ul>
             </div>
         </div>
         <div class="c-trade-filter">
             <div class="c-trade-filter__default">
-                <div class="c-trade-filter__type"><span class="c-trade-filter__type-name">所属行业</span>
-                    <ul class="c-trade-filter__option-list">
-
-
-                        <a href="http://www.mybdhome.com/?x1=&x2=&x3=&x4=&x5=&x11="/>
-                        <li class="c-trade-filter__option-item"><label class="c-trade-filter__option-name">全部</label>
-                        </li>
-                        </a><a href="http://www.mybdhome.com/?x1=&x2=&x3=1&x4=&x5=&x11="/>
-                        <li class="c-trade-filter__option-item"><label
-                                class="c-trade-filter__option-name">IT/互联网</label></li>
-                        </a><a
-                            href="http://www.mybdhome.com/?x1=&x2=&x3=8&x4=&x5=&x11="/>
-                        <li class="c-trade-filter__option-item"><label class="c-trade-filter__option-name">金融/保险</label>
-                        </li>
-                        </a><a href="http://www.mybdhome.com/?x1=&x2=&x3=10&x4=&x5=&x11="/>
-                        <li class="c-trade-filter__option-item"><label class="c-trade-filter__option-name">电商</label>
-                        </li>
-                        </a><a href="http://www.mybdhome.com/?x1=&x2=&x3=12&x4=&x5=&x11="/>
-                        <li class="c-trade-filter__option-item"><label class="c-trade-filter__option-name">游戏</label>
-                        </li>
-                        </a><a href="http://www.mybdhome.com/?x1=&x2=&x3=14&x4=&x5=&x11="/>
-                        <li class="c-trade-filter__option-item"><label class="c-trade-filter__option-name">新媒体</label>
-                        </li>
-                        </a><a href="http://www.mybdhome.com/?x1=&x2=&x3=15&x4=&x5=&x11="/>
-                        <li class="c-trade-filter__option-item"><label class="c-trade-filter__option-name">广告</label>
-                        </li>
-                        </a><a href="http://www.mybdhome.com/?x1=&x2=&x3=16&x4=&x5=&x11="/>
-                        <li class="c-trade-filter__option-item"><label
-                                class="c-trade-filter__option-name">旅游/出行/住宿</label></li>
-                        </a><a
-                            href="http://www.mybdhome.com/?x1=&x2=&x3=18&x4=&x5=&x11="/>
-                        <li class="c-trade-filter__option-item"><label class="c-trade-filter__option-name">直播/网红</label>
-                        </li>
-                        </a><a href="http://www.mybdhome.com/?x1=&x2=&x3=20&x4=&x5=&x11="/>
-                        <li class="c-trade-filter__option-item"><label class="c-trade-filter__option-name">母婴/亲子</label>
-                        </li>
-                        </a><a href="http://www.mybdhome.com/?x1=&x2=&x3=22&x4=&x5=&x11="/>
-                        <li class="c-trade-filter__option-item"><label class="c-trade-filter__option-name">教育/培训</label>
-                        </li>
-                        </a>
-
-                    </ul>
+                <div class="c-trade-filter__type">
+                    <span class="c-trade-filter__type-name">地域选择</span>
+                    <div class="c-new-post__form-field c-new-post__form-field--aim-area is-required">
+                        <div class="select-area" data-toggle="distpicker">
+                            <select class="c-new-post__field-input" id="select-province" name="aim-area-province"
+                                    required>
+                            </select>
+                            <select class="c-new-post__field-input" id="select-city" name="aim-area-city" required>
+                            </select>
+                            <button class="c-btn c-btn-theme c-btn-radius c-new-post__add-area" id="add-area"
+                                    type="button"
+                                    name="add-area" disabled>确认
+                            </button>
+                            <div class="show-area"></div>
+                            <input class="c-new-post__field-input" id="chengqu" name="diqu2" value="" placeholder=""
+                                   style="display: none;">
+                        </div>
+                    </div>
                 </div>
-                <button class="c-btn c-btn-text c-trade-filter__unfold" data-toggle="collapse"
-                        data-target="#collapse-industry">更多
-                </button>
-            </div>
-            <div class="collapse c-trade-filter__more is-folded" id="collapse-industry">
-                <ul class="c-trade-filter__option-list c-trade-filter__option-list--more">
-
-
-                    <a href="http://www.mybdhome.com/?x1=&x2=&x3=24&x4=&x5=&x11="/>
-                    <li class="c-trade-filter__option-item"><label class="c-trade-filter__option-name">汽车</label></li>
-                    </a><a href="http://www.mybdhome.com/?x1=&x2=&x3=26&x4=&x5=&x11="/>
-                    <li class="c-trade-filter__option-item"><label class="c-trade-filter__option-name">共享系列</label></li>
-                    </a><a href="http://www.mybdhome.com/?x1=&x2=&x3=28&x4=&x5=&x11="/>
-                    <li class="c-trade-filter__option-item"><label class="c-trade-filter__option-name">文化/传媒</label>
-                    </li>
-                    </a><a href="http://www.mybdhome.com/?x1=&x2=&x3=30&x4=&x5=&x11="/>
-                    <li class="c-trade-filter__option-item"><label class="c-trade-filter__option-name">婚庆/摄影</label>
-                    </li>
-                    </a><a href="http://www.mybdhome.com/?x1=&x2=&x3=32&x4=&x5=&x11="/>
-                    <li class="c-trade-filter__option-item"><label class="c-trade-filter__option-name">餐饮/食品</label>
-                    </li>
-                    </a><a href="http://www.mybdhome.com/?x1=&x2=&x3=34&x4=&x5=&x11="/>
-                    <li class="c-trade-filter__option-item"><label class="c-trade-filter__option-name">房产/家居</label>
-                    </li>
-                    </a><a href="http://www.mybdhome.com/?x1=&x2=&x3=36&x4=&x5=&x11="/>
-                    <li class="c-trade-filter__option-item"><label class="c-trade-filter__option-name">通信</label></li>
-                    </a><a href="http://www.mybdhome.com/?x1=&x2=&x3=38&x4=&x5=&x11="/>
-                    <li class="c-trade-filter__option-item"><label class="c-trade-filter__option-name">娱乐/休闲</label>
-                    </li>
-                    </a><a href="http://www.mybdhome.com/?x1=&x2=&x3=39&x4=&x5=&x11="/>
-                    <li class="c-trade-filter__option-item"><label class="c-trade-filter__option-name">体育健身</label></li>
-                    </a><a href="http://www.mybdhome.com/?x1=&x2=&x3=40&x4=&x5=&x11="/>
-                    <li class="c-trade-filter__option-item"><label class="c-trade-filter__option-name">家电/数码</label>
-                    </li>
-                    </a><a href="http://www.mybdhome.com/?x1=&x2=&x3=42&x4=&x5=&x11="/>
-                    <li class="c-trade-filter__option-item"><label class="c-trade-filter__option-name">企业服务</label></li>
-                    </a><a href="http://www.mybdhome.com/?x1=&x2=&x3=44&x4=&x5=&x11="/>
-                    <li class="c-trade-filter__option-item"><label class="c-trade-filter__option-name">医药/保健</label>
-                    </li>
-                    </a><a href="http://www.mybdhome.com/?x1=&x2=&x3=46&x4=&x5=&x11="/>
-                    <li class="c-trade-filter__option-item"><label class="c-trade-filter__option-name">化妆/美容</label>
-                    </li>
-                    </a><a href="http://www.mybdhome.com/?x1=&x2=&x3=48&x4=&x5=&x11="/>
-                    <li class="c-trade-filter__option-item"><label class="c-trade-filter__option-name">服装/鞋类</label>
-                    </li>
-                    </a><a href="http://www.mybdhome.com/?x1=&x2=&x3=50&x4=&x5=&x11="/>
-                    <li class="c-trade-filter__option-item"><label class="c-trade-filter__option-name">智能产业</label></li>
-                    </a><a href="http://www.mybdhome.com/?x1=&x2=&x3=52&x4=&x5=&x11="/>
-                    <li class="c-trade-filter__option-item"><label class="c-trade-filter__option-name">生活/办公用品</label>
-                    </li>
-                    </a><a
-                        href="http://www.mybdhome.com/?x1=&x2=&x3=56&x4=&x5=&x11="/>
-                    <li class="c-trade-filter__option-item"><label class="c-trade-filter__option-name">制造业</label></li>
-                    </a><a href="http://www.mybdhome.com/?x1=&x2=&x3=58&x4=&x5=&x11="/>
-                    <li class="c-trade-filter__option-item"><label class="c-trade-filter__option-name">其他</label></li>
-                    </a>
-
-
-                </ul>
-            </div>
-        </div>
-        <div class="c-trade-filter">
-            <div class="c-trade-filter__default">
-                <div class="c-trade-filter__type"><span class="c-trade-filter__type-name">合作地区</span>
-                    <ul class="c-trade-filter__option-list">
-
-
-                        <a href="http://www.mybdhome.com/?x1=&x2=&x3=&x4=&x5=&x11="/>
-                        <li class="c-trade-filter__option-item"><label class="c-trade-filter__option-name">全部</label>
-                        </li>
-                        </a><a href="http://www.mybdhome.com/?x1=&x2=&x3=&x4=全国&x5=&x11="/>
-                        <li class="c-trade-filter__option-item"><label class="c-trade-filter__option-name">全国</label>
-                        </li>
-                        </a><a href="http://www.mybdhome.com/?x1=&x2=&x3=&x4=北京&x5=&x11="/>
-                        <li class="c-trade-filter__option-item"><label class="c-trade-filter__option-name">北京</label>
-                        </li>
-                        </a><a href="http://www.mybdhome.com/?x1=&x2=&x3=&x4=上海&x5=&x11="/>
-                        <li class="c-trade-filter__option-item"><label class="c-trade-filter__option-name">上海</label>
-                        </li>
-                        </a><a href="http://www.mybdhome.com/?x1=&x2=&x3=&x4=广州&x5=&x11="/>
-                        <li class="c-trade-filter__option-item"><label class="c-trade-filter__option-name">广州</label>
-                        </li>
-                        </a><a href="http://www.mybdhome.com/?x1=&x2=&x3=&x4=深圳&x5=&x11="/>
-                        <li class="c-trade-filter__option-item"><label class="c-trade-filter__option-name">深圳</label>
-                        </li>
-                        </a><a href="http://www.mybdhome.com/?x1=&x2=&x3=&x4=杭州&x5=&x11="/>
-                        <li class="c-trade-filter__option-item"><label class="c-trade-filter__option-name">杭州</label>
-                        </li>
-                        </a><a href="http://www.mybdhome.com/?x1=&x2=&x3=&x4=武汉&x5=&x11="/>
-                        <li class="c-trade-filter__option-item"><label class="c-trade-filter__option-name">武汉</label>
-                        </li>
-                        </a><a href="http://www.mybdhome.com/?x1=&x2=&x3=&x4=南京&x5=&x11="/>
-                        <li class="c-trade-filter__option-item"><label class="c-trade-filter__option-name">南京</label>
-                        </li>
-                        </a><a href="http://www.mybdhome.com/?x1=&x2=&x3=&x4=天津&x5=&x11="/>
-                        <li class="c-trade-filter__option-item"><label class="c-trade-filter__option-name">天津</label>
-                        </li>
-                        </a><a href="http://www.mybdhome.com/?x1=&x2=&x3=&x4=重庆&x5=&x11="/>
-                        <li class="c-trade-filter__option-item"><label class="c-trade-filter__option-name">重庆</label>
-                        </li>
-                        </a><a href="http://www.mybdhome.com/?x1=&x2=&x3=&x4=成都&x5=&x11="/>
-                        <li class="c-trade-filter__option-item"><label class="c-trade-filter__option-name">成都</label>
-                        </li>
-                        </a>
-
-                    </ul>
-                </div>
-                <button class="c-btn c-btn-text c-trade-filter__unfold" data-toggle="collapse"
-                        data-target="#collapse-area">更多
-                </button>
-            </div>
-            <div class="collapse c-trade-filter__more is-folded" id="collapse-area">
-                <ul class="c-trade-filter__option-list c-trade-filter__option-list--more">
-
-
-                    <a href="http://www.mybdhome.com/?x1=&x2=&x3=&x4=合肥&x5=&x11="/>
-                    <li class="c-trade-filter__option-item"><label class="c-trade-filter__option-name">合肥</label></li>
-                    </a><a href="http://www.mybdhome.com/?x1=&x2=&x3=&x4=厦门&x5=&x11="/>
-                    <li class="c-trade-filter__option-item"><label class="c-trade-filter__option-name">厦门</label></li>
-                    </a>
-                </ul>
             </div>
         </div>
     </div>
-
-
     <div class="clearfix c-trade">
         <div class="c-trade__main">
             <div class="c-trade-sort">
@@ -386,7 +143,8 @@ color: #ffffff;">默认回复</label>
                         <!-- 卡片中靠左，包括figure和info overview-->
                         <div class="c-trade-card__overview">
                             <figure class="c-trade-card__avatar"><img class="c-trade-card__avatar-img"
-                                                                      src="/static/asserts/images/post-article/tx00.png" alt="头像">
+                                                                      src="/static/asserts/images/post-article/tx00.png"
+                                                                      alt="头像">
                                 <figcaption class="c-trade-card__avatar-caption" style="
     text-align: center;
 "><span style="color:red">盖世英雄</span></figcaption>
@@ -547,4 +305,9 @@ color: #ffffff;">默认回复</label>
         </div>
     </div>
 </main>
+<script src="/static/js/jquery.js"></script>
+<script src="/static/js/distpicker.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/flatpickr"></script>
+<script src="/static/js/picker.js?id=1010"></script>
+<script>$('.dropdown-toggle').dropdown()</script>
 {%endblock%}
