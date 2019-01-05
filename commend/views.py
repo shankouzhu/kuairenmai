@@ -108,6 +108,7 @@ def index(request, **kwargs):
     return render(request, 'index.html', content)
 
 
+# 搜索
 def search(request, **kwargs):
     content = {}  # 传输字典
     try:
@@ -120,11 +121,15 @@ def search(request, **kwargs):
         content['username'] = un
 
     context = request.GET.get('so')
-
-    # 查询全部需求
-    demandlist = Demand.objects.filter(
-        Q(title__contains=context) | Q(comment__contains=context) | Q(othername__contains=context)).order_by(
-        'starttime').values('id', 'title', 'starttime', 'money', 'count', 'msglevel', 'uerid', 'catagoryid')
+    if context:
+        # 查询全部需求
+        demandlist = Demand.objects.filter(
+            Q(title__contains=context) | Q(comment__contains=context) | Q(othername__contains=context)).order_by(
+            'starttime').values('id', 'title', 'starttime', 'money', 'count', 'msglevel', 'uerid', 'catagoryid')
+    else:
+        # 查询全部需求
+        demandlist = Demand.objects.filter().order_by('starttime').values('id', 'title', 'starttime', 'money', 'count',
+                                                                       'msglevel', 'uerid', 'catagoryid')
     rslist = []
     for demand in demandlist:  # 封装
         rsdir = {'demand': demand}
@@ -137,4 +142,4 @@ def search(request, **kwargs):
         rslist.append(rsdir)
         print(user.vip)
     content['demandlist'] = rslist
-    return render(request, 'index.html', content)
+    return render(request, 'demand/search.html', content)
