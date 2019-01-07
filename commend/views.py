@@ -1,27 +1,15 @@
 from django.shortcuts import render, redirect
+from django.http import HttpResponse
 from commend.models import *
 from user.common import *
+from user.views import checklogin, addusername
 from django.db.models import Q
+import datetime
+import json
+from django.core.paginator import Paginator
 
 
 # Create your views here.
-# 装饰器检查是否登录
-def checklogin(myfunc):
-    def check(request, *args, **kwargs):
-        if request.session.get('username'):
-            return myfunc(request, *args, **kwargs)
-        else:
-            return redirect("/user/login/")
-
-    return check
-
-
-# 字典添加username
-def addusername(content, request):
-    content['username'] = request.session.get('username')
-    return content
-
-
 # 需求发布页面
 @checklogin
 def demand(request):
@@ -80,21 +68,41 @@ def publishdemand(request):
 
 # 首页
 def index(request, **kwargs):
+    permaxnum = 8  # 每页最多显示
+    maxpage = 8  # 最大显示页码数量
     content = {}  # 传输字典
     try:
         page = strtoint(kwargs['page'])  # 页数
     except Exception:
         page = 1
-    content['page'] = page
     un = request.session.get('username')  # 获取当前用户帐号
     if un:
         content['username'] = un
 
     # 查询全部需求
-    demandlist = Demand.objects.all().order_by('starttime').values('id', 'title', 'starttime', 'money', 'count',
-                                                                   'msglevel', 'uerid', 'catagoryid')
-    rslist = []
-    for demand in demandlist:  # 封装
+    demandlist = Demand.objects.all().order_by('-starttime').values('id', 'title', 'starttime', 'money', 'count',
+                                                                    'msglevel', 'uerid', 'catagoryid')
+    p = Paginator(demandlist, permaxnum)  # 按每页最多permaxnum进行分页
+    allpage = p.num_pages  # 总页数
+    content['numpages'] = allpage
+
+    pagerange = p.page_range  # 全部分页范围从1开始
+
+    # 选取合适的maxpage页码
+    if content['numpages'] > maxpage:
+        if page < maxpage / 2:
+            pagerange = pagerange[:maxpage]
+        elif allpage - page > maxpage / 2:
+            pagerange = pagerange[allpage - maxpage:]
+        else:
+            pagerange = pagerange[page - maxpage / 2:page + maxpage / 2]
+    content['allpage'] = pagerange
+
+    # 取对应页对象
+    demands = p.page(page)
+    content['pageobj'] = demands
+    rslist = []  # 存储分装好的数据
+    for demand in demands:  # 封装
         rsdir = {'demand': demand}
         user = usermodels.Userinfo.objects.get(pk=demand['uerid'])
         rsdir['user_headimg'] = user.headimg
@@ -103,7 +111,6 @@ def index(request, **kwargs):
         classob = Classification.objects.get(pk=demand['catagoryid'])
         rsdir['catagory'] = classob.catagory
         rslist.append(rsdir)
-        print(user.vip)
     content['demandlist'] = rslist
     return render(request, 'index.html', content)
 
@@ -129,7 +136,7 @@ def search(request, **kwargs):
     else:
         # 查询全部需求
         demandlist = Demand.objects.filter().order_by('starttime').values('id', 'title', 'starttime', 'money', 'count',
-                                                                       'msglevel', 'uerid', 'catagoryid')
+                                                                          'msglevel', 'uerid', 'catagoryid')
     rslist = []
     for demand in demandlist:  # 封装
         rsdir = {'demand': demand}
@@ -140,6 +147,119 @@ def search(request, **kwargs):
         classob = Classification.objects.get(pk=demand['catagoryid'])
         rsdir['catagory'] = classob.catagory
         rslist.append(rsdir)
-        print(user.vip)
     content['demandlist'] = rslist
     return render(request, 'demand/search.html', content)
+
+
+# 几天最热
+def ndayhot(request):
+    day = strtoint(request.GET.get('day'), 1)  # 获取前端传来天数
+
+    content = {}
+    yesteday = datetime.datetime.now() - datetime.timedelta(hours=23 * day, minutes=59, seconds=59)  # 前day天
+    # 获取前一天的所有数据,按浏览次数排序
+    dlist = Demand.objects.filter(starttime__gte=yesteday).order_by('-count').values('id', 'title', 'catagoryid')
+    if len(dlist) > 8:  # 取钱面8条数据
+        dlist = dlist[:8]
+    rslist = []
+    for d in dlist:
+        cls = Classification.objects.get(pk=d['catagoryid'])
+        d['cls'] = cls.catagory
+        rslist.append(d)
+        del d['catagoryid']
+    content['rslist'] = rslist
+    return HttpResponse(json.dumps(content), content_type="application/json")
+
+
+# 需求详情
+def demandinfo(request, **kwargs):
+    content = {}  # 传输字典
+    try:
+        page = strtoint(kwargs['id'])  # 页数
+    except Exception:
+        page = 1
+    try:
+        id = strtoint(kwargs['page'])  # 页数
+    except Exception:
+        return redirect("/commend/index/1")
+
+    un = request.session.get('username')  # 获取当前用户帐号
+    if un:
+        content['username'] = un
+
+    demand = Demand.objects.get(pk=id)  # 找到对应发布的需求
+    content['demand'] = demand
+    demand.count = strtoint(demand.count) + 1
+    demand.save()
+    uid = demand.uerid  # 发布者id
+    content['user_nikename'] = uid.nickname if uid.nickname else uid.username
+    content['user_headimg'] = uid.headimg
+
+    demandlist = Demand.objects.filter(uerid=uid.id).order_by('starttime').values('id', 'title', 'catagoryid')
+    rslist = []
+    for demand in demandlist:  # 封装
+        rsdir = {'demand': demand}
+        classob = Classification.objects.get(pk=demand['catagoryid'])
+        rsdir['catagory'] = classob.catagory
+        rslist.append(rsdir)
+    content['demandlist'] = rslist
+    content = reply(id, content, page)
+    print(content)
+    return render(request, 'details/demanddetails.html', content)
+
+
+# 回复
+def reply(id, content, page):
+    permaxnum = 8  # 每页最多显示
+    maxpage = 8  # 最大显示页码数量
+    replylist = Reply.objects.filter(demandid_id=id).order_by('-createtime').values('id', 'repcontext', 'createtime',
+                                                                                    'uerid')
+    p = Paginator(replylist, permaxnum)  # 按每页最多permaxnum进行分页
+    allpage = p.num_pages  # 总页数
+    content['numpages'] = allpage
+
+    pagerange = p.page_range  # 全部分页范围从1开始
+
+    # 选取合适的maxpage页码
+    if content['numpages'] > maxpage:
+        if page < maxpage / 2:
+            pagerange = pagerange[:maxpage]
+        elif allpage - page > maxpage / 2:
+            pagerange = pagerange[allpage - maxpage:]
+        else:
+            pagerange = pagerange[page - maxpage / 2:page + maxpage / 2]
+    content['allpage'] = pagerange
+
+    # 取对应页对象
+    replypages = p.page(page)
+
+    rslist = []
+    for reply in replypages:
+        rsdir = {}
+        user = usermodels.Userinfo.objects.get(pk=strtoint(reply['uerid']))
+        uname = user.nickname if user.nickname else user.username
+        rsdir['uname'] = uname
+        uimg = user.headimg
+        rsdir['uimg'] = uimg
+        rsdir['id'] = reply['id']
+        rsdir['repcontext'] = reply['repcontext']
+        rsdir['createtime'] = reply['createtime']
+        rslist.append(rsdir)
+    content['replylist'] = rslist
+    content['currentpage'] = page
+    return content
+
+
+# 回复提交表单
+def replyfrom(request):
+    return render(request, 'details/replyfrom.html')
+
+
+# 回复保存
+def replyputdata(request):
+    pass
+
+
+# 获取相应的回复
+def getreply(request, **kwargs):
+    pass
